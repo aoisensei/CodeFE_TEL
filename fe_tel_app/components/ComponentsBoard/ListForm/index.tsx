@@ -11,6 +11,7 @@ import { useEventListener, useOnClickOutside } from "usehooks-ts";
 import { FormInput } from "@/components/Form/form-input";
 import { FormSubmit } from "@/components/Form/form-submit";
 import { Button } from "@nextui-org/react";
+import { RegisterOptions, FieldValues, UseFormRegisterReturn } from "react-hook-form";
 
 export const ListForm = () => {
   const router = useRouter();
@@ -75,8 +76,10 @@ export const ListForm = () => {
             //errors={fieldErrors}
             id="title"
             className="text-sm px-2 py-1 h-7 font-medium border-transparent hover:border-input focus:border-input transition"
-            placeholder="Enter list title..."
-          />
+            placeholder="Enter list title..." 
+            register={function <TFieldName extends string = string>(name: TFieldName, options?: RegisterOptions<FieldValues, TFieldName> | undefined): UseFormRegisterReturn<TFieldName> {
+              throw new Error("Function not implemented.");
+            } }          />
           <input
             hidden
             value={params.boardId}
