@@ -1,17 +1,24 @@
 import { ClassEvent } from '@/models/classevent'
+import { FilterData } from '@/models/filter'
 import { NextResponse } from 'next/server'
 
-const DATA_SOURCE_URL = process.env.BASE_URL + "/tel/classevent/"
+const DATA_SOURCE_URL = process.env.BASE_URL + "/tel/classroom/"
 
-export async function FetchData() {
+export async function FetchDataClassEvent(filter: FilterData) {
     try {
         const res = await fetch(DATA_SOURCE_URL + "list-class-event", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
+            body: JSON.stringify({
+                id: filter.id,
+                code: filter.code,
+                name: filter.name
+            })
         })
         const Classevents: ClassEvent[] = await res.json()
+        console.log(Classevents);
         return Classevents;
     } catch (error) {
         console.error('Error parsing JSON:', error);
@@ -19,7 +26,7 @@ export async function FetchData() {
     }
 }
 
-export async function Create(classevent: any) {
+export async function CreateClassEvent(classevent: any) {
     try {
         debugger;
         const res = await fetch(DATA_SOURCE_URL + "create-class-event", {
@@ -53,7 +60,7 @@ export async function Create(classevent: any) {
     }
 }
 
-export async function Update(request: Request) {
+export async function UpdateClassEvent(request: Request) {
     const {
         id,
         classroomId,
@@ -97,7 +104,7 @@ export async function Update(request: Request) {
     return newClassEvent
 }
 
-export async function Delete(request: Request) {
+export async function DeleteClassEvent(request: Request) {
     const { id }: Partial<ClassEvent> = await request.json()
 
     if (!id) return NextResponse.json({ "message": "ClassEvent id required" })

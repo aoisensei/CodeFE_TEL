@@ -12,6 +12,7 @@ export async function FetchData() {
             },
         })
         const Classrooms: Classroom[] = await res.json()
+        console.log(Classrooms);
         return Classrooms;
     } catch (error) {
         console.error('Error parsing JSON:', error);

@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 
 import Navbar from "@/components/ComponentsUserPage/Navbar";
+import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
 
 const useFakeAuth = () => {
     const user = {
@@ -19,12 +20,12 @@ const useFakeAuth = () => {
     };
 };
 
-export async function generateMetadata({ params }: {params: { classroomId: string; };}) {
+export async function generateMetadata({ params }: { params: { classroomId: string; }; }) {
     const { userId } = useFakeAuth();
 
     if (!userId) {
         return {
-        title: "Classroom",
+            title: "Classroom",
         };
     }
     const classroom = {
@@ -32,15 +33,15 @@ export async function generateMetadata({ params }: {params: { classroomId: strin
         title: "Classroom 1",
         createdAt: new Date(),
         updatedAt: new Date(),
-        
+
     };
 
     return {
-    title: classroom?.title || "Classroom 1",
+        title: classroom?.title || "Classroom 1",
     };
 }
 
-const ClassroomIdLayout = async ({ children, params,}: { children: React.ReactNode; params: { classroomId: string; };}) => {
+const ClassroomIdLayout = async ({ children, params, }: { children: React.ReactNode; params: { classroomId: string; }; }) => {
     const { userId } = useFakeAuth();
 
     if (!userId) {
@@ -52,7 +53,7 @@ const ClassroomIdLayout = async ({ children, params,}: { children: React.ReactNo
         title: "Classroom 1",
         createdAt: new Date(),
         updatedAt: new Date(),
-        
+
     };
 
     if (!classroom) {
@@ -63,11 +64,16 @@ const ClassroomIdLayout = async ({ children, params,}: { children: React.ReactNo
         <div
             className="relative h-full bg-no-repeat bg-cover bg-center"
         >
-        <Navbar />
-        <div className="absolute inset-0 bg-black/10" />
-        <main className="relative pt-28 h-full">
-            {children}
-        </main>
+            <Navbar />
+            <div className="absolute inset-0 " />
+            <Image
+                width={300}
+                alt="NextUI hero Image"
+                src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
+            />
+            <main className="relative pt-28 h-full">
+                {children}
+            </main>
         </div>
     );
 };
