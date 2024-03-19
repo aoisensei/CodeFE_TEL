@@ -14,11 +14,16 @@ export async function FetchDataClassEvent(filter: FilterData) {
             body: JSON.stringify({
                 id: filter.id,
                 code: filter.code,
-                name: filter.name
+                name: filter.name,
+                pinned: filter.pinned,
+                isNotification: filter.isNotification,
+                skip: filter.skip,
+                take: filter.take,
+                ordertype: filter.ordertype,
+                orderby: filter.orderby
             })
         })
         const Classevents: ClassEvent[] = await res.json()
-        console.log(Classevents);
         return Classevents;
     } catch (error) {
         console.error('Error parsing JSON:', error);

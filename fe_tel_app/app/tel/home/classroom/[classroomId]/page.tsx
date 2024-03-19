@@ -1,7 +1,4 @@
 
-// Các import và mã của bạn ở đây
-
-
 import { redirect } from "next/navigation";
 
 
@@ -9,6 +6,8 @@ import { FetchData } from "@/services/classroom-service";
 import { Classroom } from "@/models/classroom";
 import { useEffect } from "react";
 import { ClassEventList } from "@/components/ComponentsClassroom/ClassEventList";
+import { ClassEventPinned } from "@/components/ComponentsClassroom/ClassEventPinned";
+import { ClassEventCreate } from "@/components/ComponentsClassroom/ClassEventCreate";
 
 interface ClassroomIdPageProps {
   params: {
@@ -42,11 +41,12 @@ const ClassroomIdPage = async ({
     redirect("/select-org");
   }
 
-
   return (
-    <div className="p-4 h-full overflow-x-auto">
+    <div className="p-4 h-full grid grid-flow-col gap-16">
       <ClassEventList />
+      <ClassEventPinned />
     </div>
+
   );
 };
 

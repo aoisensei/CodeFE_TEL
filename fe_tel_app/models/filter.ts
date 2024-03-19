@@ -6,4 +6,6 @@ export type FilterData = {
     ordertype?: number;
     skip?: number;
     take?: number;
+    pinned?: boolean;
+    isNotification?: boolean;
   };
